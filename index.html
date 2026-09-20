@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080706">
+
+<title>Gran Montana | Lobby</title>
+
+<style>
+/* =========================================================
+   GRAN MONTANA — LOBBY DIGITAL
+   ESTILO: CÁLIDO / ELEGANTE / PREMIUM
+========================================================= */
+
+:root{
+    --black:#080706;
+    --black2:#100e0b;
+    --black3:#17130e;
+
+    --gold:#c99b4b;
+    --gold2:#e2bd70;
+    --gold3:#f4d99a;
+
+    --white:#fffdf8;
+    --cream:#eee5d5;
+
+    --muted:rgba(255,250,240,.58);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    min-height:100%;
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+
+    color:var(--white);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(213,166,79,.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(190,130,45,.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #060505,
+            #0c0a08 48%,
+            #080706
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.warm-glow{
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    top:-390px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,207,126,.20),
+            rgba(210,159,64,.07) 35%,
+            transparent 70%
+        );
+
+    filter:blur(20px);
+
+    animation:
+        warmPulse 7s ease-in-out infinite;
+}
+
+
+/* brillo inferior */
+
+.warm-glow-bottom{
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    right:-300px;
+    bottom:-300px;
+
+    border-radius:50%;
+
+    background:
+        rgba(193,135,50,.08);
+
+    filter:blur(80px);
+
+    animation:
+        bottomPulse 8s ease-in-out infinite;
+}
+
+
+/* línea dorada que se mueve */
+
+.beam{
+    position:absolute;
+
+    width:180%;
+    height:1px;
+
+    left:-40%;
+    top:33%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(231,192,110,.03),
+            rgba(231,192,110,.45),
+            rgba(231,192,110,.03),
+            transparent
+        );
+
+    transform:rotate(-15deg);
+
+    animation:
+        beamMove 11s linear infinite;
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.particle{
+    position:absolute;
+
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+
+    background:#e4bd70;
+
+    box-shadow:
+        0 0 9px rgba(228,189,112,.9);
+
+    opacity:0;
+
+    animation:
+        particleMove linear infinite;
+}
+
+.p1{left:6%;top:80%;animation-duration:9s;}
+.p2{left:13%;top:38%;animation-duration:12s;animation-delay:2s;}
+.p3{left:22%;top:68%;animation-duration:10s;animation-delay:1s;}
+.p4{left:31%;top:20%;animation-duration:13s;}
+.p5{left:39%;top:78%;animation-duration:9s;animation-delay:3s;}
+.p6{left:48%;top:45%;animation-duration:11s;}
+.p7{left:57%;top:18%;animation-duration:10s;animation-delay:2s;}
+.p8{left:65%;top:73%;animation-duration:12s;}
+.p9{left:74%;top:31%;animation-duration:9s;}
+.p10{left:82%;top:65%;animation-duration:11s;animation-delay:1s;}
+.p11{left:91%;top:25%;animation-duration:13s;}
+.p12{left:95%;top:80%;animation-duration:10s;}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.lobby{
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px 18px;
+}
+
+.container{
+    width:100%;
+    max-width:620px;
+
+    text-align:center;
+
+    animation:
+        entrance 1.2s cubic-bezier(.16,1,.3,1);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo-area{
+    position:relative;
+
+    width:220px;
+    height:220px;
+
+    margin:0 auto 12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* halo */
+
+.logo-area::before{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    border:
+        1px solid
+        rgba(226,184,96,.18);
+
+    box-shadow:
+        0 0 45px rgba(210,163,73,.07),
+        inset 0 0 35px rgba(210,163,73,.04);
+
+    animation:
+        ringPulse 5s ease-in-out infinite;
+}
+
+
+/* aro animado */
+
+.logo-area::after{
+    content:"";
+
+    position:absolute;
+
+    inset:9px;
+
+    border-radius:50%;
+
+    border-top:
+        1px solid
+        rgba(240,204,125,.75);
+
+    border-right:
+        1px solid
+        transparent;
+
+    border-bottom:
+        1px solid
+        rgba(240,204,125,.10);
+
+    border-left:
+        1px solid
+        transparent;
+
+    animation:
+        ringRotate 15s linear infinite;
+}
+
+
+.logo{
+    position:relative;
+    z-index:2;
+
+    width:205px;
+    height:205px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 16px 30px
+            rgba(0,0,0,.75)
+        )
+        drop-shadow(
+            0 0 22px
+            rgba(223,180,83,.13)
+        );
+
+    animation:
+        logoFloat 6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   TITULOS
+========================================================= */
+
+.welcome{
+    color:var(--gold2);
+
+    font-size:9px;
+
+    letter-spacing:5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:10px;
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s ease forwards;
+
+    animation-delay:.35s;
+}
+
+
+.title{
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(35px,8vw,52px);
+
+    font-weight:400;
+
+    letter-spacing:2px;
+
+    line-height:1;
+
+    margin-bottom:10px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #ad7a2d,
+            #edc979,
+            #fff0bd,
+            #d5a84f,
+            #9e6d27
+        );
+
+    background-size:300% auto;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    opacity:0;
+
+    animation:
+        titleIn .9s ease forwards,
+        goldFlow 7s linear infinite;
+
+    animation-delay:.5s,1.4s;
+}
+
+
+.subtitle{
+    color:var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s ease forwards;
+
+    animation-delay:.7s;
+}
+
+
+/* =========================================================
+   MENÚ PRINCIPAL
+========================================================= */
+
+.main-menu{
+    position:relative;
+
+    margin-top:30px;
+
+    text-decoration:none;
+    color:white;
+
+    display:block;
+
+    min-height:220px;
+
+    padding:30px 25px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(235,195,108,.14),
+            transparent 48%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.025)
+        );
+
+    border:
+        1px solid
+        rgba(227,184,91,.38);
+
+    box-shadow:
+        0 30px 70px
+        rgba(0,0,0,.55),
+
+        0 0 45px
+        rgba(215,169,75,.07),
+
+        inset 0 1px
+        rgba(255,255,255,.07);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    opacity:0;
+
+    animation:
+        mainMenuIn 1s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+    animation-delay:.95s;
+
+    transition:
+        transform .4s
+        cubic-bezier(.16,1,.3,1),
+
+        box-shadow .4s ease,
+
+        border-color .4s ease;
+}
+
+
+/* brillo que atraviesa */
+
+.main-menu::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+    height:180%;
+
+    top:-40%;
+    left:-160px;
+
+    transform:rotate(18deg);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,240,193,.30),
+            transparent
+        );
+
+    animation:
+        menuShine 4.5s ease-in-out infinite;
+}
+
+
+/* halo */
+
+.main-menu::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(229,187,91,.09),
+            transparent 68%
+        );
+
+    animation:
+        menuGlow 4s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+
+.main-menu:hover{
+
+    transform:
+        translateY(-7px)
+        scale(1.015);
+
+    border-color:
+        rgba(239,202,119,.72);
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,.65),
+
+        0 0 50px
+        rgba(222,177,81,.13),
+
+        inset 0 1px
+        rgba(255,255,255,.08);
+}
+
+
+/* =========================================================
+   ETIQUETA DEL MENÚ
+========================================================= */
+
+.menu-label{
+
+    position:relative;
+    z-index:3;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:
+        rgba(255,241,199,.62);
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    margin-bottom:16px;
+}
+
+
+.menu-label::before,
+.menu-label::after{
+
+    content:"";
+
+    width:25px;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold2)
+        );
+}
+
+
+.menu-label::after{
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold2),
+            transparent
+        );
+}
+
+
+/* =========================================================
+   ICONO DEL MENÚ
+========================================================= */
+
+.menu-icon{
+
+    position:relative;
+    z-index:3;
+
+    width:58px;
+    height:58px;
+
+    margin:0 auto 14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:18px;
+
+    border:
+        1px solid
+        rgba(228,188,100,.40);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(228,188,100,.17),
+            rgba(228,188,100,.04)
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(221,178,83,.07);
+
+    animation:
+        iconFloat 3.5s ease-in-out infinite;
+}
+
+
+.menu-icon-lines{
+    width:25px;
+}
+
+
+.menu-icon-lines span{
+
+    display:block;
+
+    height:2px;
+
+    margin:5px 0;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b98332,
+            #f0d184
+        );
+}
+
+
+/* =========================================================
+   TEXTO MENÚ
+========================================================= */
+
+.menu-title{
+
+    position:relative;
+    z-index:3;
+
+    display:block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(28px,7vw,40px);
+
+    font-weight:400;
+
+    letter-spacing:1px;
+
+    margin-bottom:8px;
+}
+
+
+.menu-description{
+
+    position:relative;
+    z-index:3;
+
+    display:block;
+
+    color:
+        rgba(255,249,235,.58);
+
+    font-size:12px;
+
+    line-height:1.6;
+
+    margin-bottom:17px;
+}
+
+
+.menu-action{
+
+    position:relative;
+    z-index:3;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    min-width:145px;
+
+    padding:11px 20px;
+
+    border-radius:100px;
+
+    color:#17120a;
+
+    background:
+        linear-gradient(
+            100deg,
+            #b98332,
+            #f0d184,
+            #d4a54d
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(215,169,73,.15);
+
+    font-size:10px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.main-menu:hover .menu-action{
+
+    transform:
+        scale(1.05);
+
+    box-shadow:
+        0 10px 35px
+        rgba(226,182,82,.28);
+}
+
+
+/* =========================================================
+   ACCESOS SECUNDARIOS
+========================================================= */
+
+.secondary{
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    opacity:0;
+
+    animation:
+        fadeUp .9s ease forwards;
+
+    animation-delay:1.3s;
+}
+
+
+.secondary-card{
+
+    min-height:95px;
+
+    padding:14px 8px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(218,178,88,.13);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease;
+}
+
+
+.secondary-card:hover{
+
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(218,178,88,.08);
+
+    border-color:
+        rgba(218,178,88,.4);
+}
+
+
+.secondary-icon{
+
+    width:35px;
+    height:35px;
+
+    margin-bottom:8px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:var(--gold2);
+
+    border:
+        1px solid
+        rgba(221,181,92,.22);
+
+    background:
+        rgba(221,181,92,.07);
+
+    font-size:17px;
+}
+
+
+.secondary-name{
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:12px;
+
+    color:
+        rgba(255,255,255,.82);
+}
+
+
+.secondary-desc{
+
+    font-size:8px;
+
+    color:
+        rgba(255,255,255,.32);
+
+    margin-top:3px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    margin-top:21px;
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s ease forwards;
+
+    animation-delay:1.6s;
+}
+
+
+.footer-line{
+
+    width:50px;
+
+    height:1px;
+
+    margin:0 auto 11px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+}
+
+
+.footer-text{
+
+    color:
+        rgba(255,255,255,.24);
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes entrance{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(35px)
+            scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+
+@keyframes ringPulse{
+
+    0%,100%{
+        opacity:.35;
+        transform:scale(1);
+    }
+
+    50%{
+        opacity:.75;
+        transform:scale(1.025);
+    }
+}
+
+
+@keyframes ringRotate{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+@keyframes warmPulse{
+
+    0%,100%{
+        opacity:.55;
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+
+    50%{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            scale(1.15);
+    }
+}
+
+
+@keyframes bottomPulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.5;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+}
+
+
+@keyframes beamMove{
+
+    0%{
+        transform:
+            translateX(-35%)
+            rotate(-15deg);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:.7;
+    }
+
+    80%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:
+            translateX(35%)
+            rotate(-15deg);
+
+        opacity:0;
+    }
+}
+
+
+@keyframes particleMove{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.3);
+    }
+
+    20%{
+        opacity:.75;
+    }
+
+    70%{
+        opacity:.3;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(-100px)
+            scale(1);
+    }
+}
+
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes titleIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes goldFlow{
+
+    0%{
+        background-position:0% center;
+    }
+
+    100%{
+        background-position:300% center;
+    }
+}
+
+
+@keyframes mainMenuIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes menuShine{
+
+    0%,20%{
+        left:-160px;
+    }
+
+    65%,100%{
+        left:130%;
+    }
+}
+
+
+@keyframes menuGlow{
+
+    0%,100%{
+        opacity:.5;
+        transform:
+            translate(-50%,-50%)
+            scale(.85);
+    }
+
+    50%{
+        opacity:1;
+        transform:
+            translate(-50%,-50%)
+            scale(1.15);
+    }
+}
+
+
+@keyframes iconFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media(max-width:600px){
+
+    .lobby{
+        padding:
+            22px
+            14px
+            22px;
+    }
+
+    .logo-area{
+        width:180px;
+        height:180px;
+    }
+
+    .logo{
+        width:170px;
+        height:170px;
+    }
+
+    .welcome{
+        font-size:8px;
+        letter-spacing:4px;
+    }
+
+    .title{
+        font-size:35px;
+    }
+
+    .subtitle{
+        font-size:12px;
+    }
+
+    .main-menu{
+        min-height:205px;
+
+        padding:
+            25px
+            17px;
+
+        border-radius:26px;
+    }
+
+    .menu-icon{
+        width:52px;
+        height:52px;
+    }
+
+    .menu-title{
+        font-size:29px;
+    }
+
+    .menu-description{
+        font-size:11px;
+    }
+
+    .secondary{
+        grid-template-columns:
+            repeat(3,1fr);
+
+        gap:7px;
+    }
+
+    .secondary-card{
+        min-height:88px;
+
+        padding:
+            10px 4px;
+    }
+
+    .secondary-icon{
+        width:31px;
+        height:31px;
+
+        font-size:14px;
+    }
+
+    .secondary-name{
+        font-size:10px;
+    }
+
+    .secondary-desc{
+        font-size:7px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media(max-width:380px){
+
+    .logo-area{
+        width:155px;
+        height:155px;
+    }
+
+    .logo{
+        width:147px;
+        height:147px;
+    }
+
+    .title{
+        font-size:31px;
+    }
+
+    .main-menu{
+        margin-top:22px;
+    }
+
+    .secondary-card{
+        min-height:82px;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none !important;
+
+        transition:none !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     FONDO ANIMADO
+======================================================= -->
+
+<div class="background">
+
+    <div class="warm-glow"></div>
+
+    <div class="warm-glow-bottom"></div>
+
+    <div class="beam"></div>
+
+    <div class="particles">
+
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+        <span class="particle p6"></span>
+        <span class="particle p7"></span>
+        <span class="particle p8"></span>
+        <span class="particle p9"></span>
+        <span class="particle p10"></span>
+        <span class="particle p11"></span>
+        <span class="particle p12"></span>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     LOBBY
+======================================================= -->
+
+<main class="lobby">
+
+<div class="container">
+
+
+    <!-- LOGO -->
+
+    <div class="logo-area">
+
+        <img
+            class="logo"
+            src="8A0B2565-202D-46B1-95F3-A6BEAEA9CD47.png"
+            alt="Hotel y Restaurante Gran Montana"
+        >
+
+    </div>
+
+
+    <!-- PRESENTACIÓN -->
+
+    <div class="welcome">
+        Bienvenido
+    </div>
+
+
+    <h1 class="title">
+        Gran Montana
+    </h1>
+
+
+    <div class="subtitle">
+        Hotel y Restaurante
+    </div>
+
+
+    <!-- ===================================================
+         MENÚ PRINCIPAL
+    ==================================================== -->
+
+    <a
+        href="https://menumontana.wordpress.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="main-menu"
+    >
+
+        <div class="menu-label">
+            Nuestra especialidad
+        </div>
+
+
+        <div class="menu-icon">
+
+            <div class="menu-icon-lines">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+
+        <span class="menu-title">
+            Nuestro Menú
+        </span>
+
+
+        <span class="menu-description">
+            Descubre nuestra selección gastronómica
+            y disfruta de la experiencia Gran Montana.
+        </span>
+
+
+        <span class="menu-action">
+            Ver Menú
+            <span>→</span>
+        </span>
+
+    </a>
+
+
+    <!-- ===================================================
+         ACCESOS SECUNDARIOS
+    ==================================================== -->
+
+    <div class="secondary">
+
+
+        <!-- WEB -->
+
+        <a
+            href="https://granmontana.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="secondary-card"
+        >
+
+            <div class="secondary-icon">
+                ◉
+            </div>
+
+            <div class="secondary-name">
+                Página Web
+            </div>
+
+            <div class="secondary-desc">
+                Conócenos
+            </div>
+
+        </a>
+
+
+        <!-- CUENTAS -->
+
+        <a
+            href="https://numeroscuentapinomontana.wordpress.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="secondary-card"
+        >
+
+            <div class="secondary-icon">
+                Q
+            </div>
+
+            <div class="secondary-name">
+                Cuentas
+            </div>
+
+            <div class="secondary-desc">
+                Pagos
+            </div>
+
+        </a>
+
+
+        <!-- NORMATIVO -->
+
+        <a
+            href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="secondary-card"
+        >
+
+            <div class="secondary-icon">
+                ≡
+            </div>
+
+            <div class="secondary-name">
+                Normativo
+            </div>
+
+            <div class="secondary-desc">
+                Hotel
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- ===================================================
+         FOOTER
+    ==================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-line"></div>
+
+        <div class="footer-text">
+            Gran Montana
+        </div>
+
+    </footer>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   EFECTO PARALLAX DEL LOGO
+========================================================= */
+
+const logo =
+    document.querySelector(".logo");
+
+document.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(window.innerWidth < 800)
+            return;
+
+        const x =
+            (e.clientX /
+            window.innerWidth - .5);
+
+        const y =
+            (e.clientY /
+            window.innerHeight - .5);
+
+        logo.style.marginLeft =
+            `${x * 4}px`;
+
+        logo.style.marginTop =
+            `${y * 4}px`;
+
+    }
+);
+
+
+/* =========================================================
+   EFECTO DE PRESIÓN AL TOCAR
+========================================================= */
+
+document
+.querySelectorAll(".main-menu, .secondary-card")
+.forEach(element => {
+
+    element.addEventListener(
+        "touchstart",
+        function(){
+
+            this.style.transform =
+                "scale(.97)";
+
+        },
+        {passive:true}
+    );
+
+
+    element.addEventListener(
+        "touchend",
+        function(){
+
+            setTimeout(() => {
+
+                this.style.transform = "";
+
+            },120);
+
+        },
+        {passive:true}
+    );
+
+});
+
+
+/* =========================================================
+   RIPPLE EN EL MENÚ
+========================================================= */
+
+const mainMenu =
+    document.querySelector(".main-menu");
+
+
+mainMenu.addEventListener(
+    "click",
+    function(e){
+
+        const rect =
+            this.getBoundingClientRect();
+
+        const x =
+            e.clientX - rect.left;
+
+        const y =
+            e.clientY - rect.top;
+
+
+        const ripple =
+            document.createElement("span");
+
+
+        ripple.style.position =
+            "absolute";
+
+        ripple.style.left =
+            `${x}px`;
+
+        ripple.style.top =
+            `${y}px`;
+
+        ripple.style.width =
+            "10px";
+
+        ripple.style.height =
+            "10px";
+
+        ripple.style.borderRadius =
+            "50%";
+
+        ripple.style.background =
+            "rgba(255,221,145,.25)";
+
+        ripple.style.transform =
+            "translate(-50%,-50%) scale(1)";
+
+        ripple.style.pointerEvents =
+            "none";
+
+        ripple.style.zIndex =
+            "10";
+
+        ripple.style.transition =
+            "transform .7s ease, opacity .7s ease";
+
+
+        this.appendChild(ripple);
+
+
+        requestAnimationFrame(() => {
+
+            ripple.style.transform =
+                "translate(-50%,-50%) scale(40)";
+
+            ripple.style.opacity =
+                "0";
+
+        });
+
+
+        setTimeout(() => {
+
+            ripple.remove();
+
+        },700);
+
+    }
+);
+
+</script>
+
+</body>
+</html>
